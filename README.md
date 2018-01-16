@@ -2,9 +2,7 @@
 
 Projeto 1 da cadeira de Processamento Gráfico (IF680)
 
-Alunos: Jônatas de Oliveira Clementino
-
-        Valdemiro Rosa Vieira Santos
+Alunos: Jônatas de Oliveira Clementino e Valdemiro Rosa Vieira Santos
 
 Especificação Geral:
 
