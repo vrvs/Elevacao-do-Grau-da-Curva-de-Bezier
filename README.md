@@ -27,7 +27,7 @@ de De Casteljau.
 
 ■ O número de avaliações da(s) curva(s) é arbitrária (determinada pelo usuário).
 
-■ A menos que seja algum número seja especificado, o número de pontos de
+■ A menos que algum número seja especificado, o número de pontos de
 controle da(s) curva(s) é arbitrário, sem limite.
 
 ■ O sistema deve ser interativo, permitindo inserir, modificar e deletar os
