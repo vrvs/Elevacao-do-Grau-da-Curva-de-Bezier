@@ -21,15 +21,22 @@ de Bézier, e deve atender os seguintes requisitos:
 
  As avaliações (número de pontos computados) deve ser feita com o algoritmo
 de De Casteljau.
+
  O desenho das curvas serão feitos por retas ligando os pontos computados.
+
  O número de avaliações da(s) curva(s) é arbitrária (determinada pelo usuário).
+
  A menos que seja algum número seja especificado, o número de pontos de
 controle da(s) curva(s) é arbitrário, sem limite.
+
  O sistema deve ser interativo, permitindo inserir, modificar e deletar os
 pontos de controle.
+
  A atualização da curva é feita em tempo real.
+
  O programa deve ter botões para esconder/exibir: pontos de controle,
 poligonal de controle, curva de Bézier.
+
 
 Especificação Específica:
 
