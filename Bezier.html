@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+    <style>
+	body.hidden {
+		overflow: hidden;
+	}
+	
+	.myDiv {
+		background-color: white;
+		height: 30px;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: 0;
+		padding: 3px;
+		border: 0;
+	}
+	
+	.noBreak {
+		display:inline;
+		margin: 30px;
+	}
+	
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 17px;
+      left: 0px;
+      bottom: -3px;
+    }
+
+    .switch input {display:none;}
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 15px;
+      width: 15px;
+      left: 1px;
+      bottom: 1px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #00FF00;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(13px);
+      -ms-transform: translateX(13px);
+      transform: translateX(13px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 17px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    
+    label.round {
+      border: 2px solid green;
+      border-radius: 7px;
+      background-color: #00FFFF;
+    }
+    .button {
+      display: inline-block;
+      padding: 5px 10px;
+      font-size: 13px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: black;
+      background-color: #00FF00;
+      border: none;
+      border-radius: 7px;
+      box-shadow: 0 3px #E0E0E0;
+    }
+    
+    .button:hover {background-color: #00CC33}
+
+    .button:active {
+      background-color: #00FF00;
+      box-shadow: 0 1px #E0E0E0;
+      transform: translateY(4px);
+    }
+    </style>
+
+    <script src="frames/bonsai-0.4.1.min.js" charset="utf-8"></script>
+    <script src="frames/jquery-3.1.1.min.js" charset="utf-8"></script>
+	
+	
+	
+	<div class="myDiv" align = "center">
+	<div class="noBreak">
+    <label><b>Pontos de Controle</b>
+      <label class="switch">
+        <input id="control" type="checkbox" checked onclick="controlPointsSwitch()">
+        <div class="slider round"></div>
+      </label> 
+    </label>
+    </div>
+	
+	<div class="noBreak">
+    <label><b>Poligonal de Controle </b>
+      <label class="switch">
+        <input id="polygon" type="checkbox" checked onclick="controlPolygonSwitch()">
+        <div class="slider round"></div>
+      </label>
+    </label>
+	</div>
+
+	<div class="noBreak">
+    <label><b>Pontos da Curva </b>
+      <label class="switch">
+        <input id="curve" type="checkbox" checked onclick="curvePointsSwitch()">
+        <div class="slider round"></div>
+      </label>
+    </label>
+	</div>
+	
+	<div class="noBreak">
+    <input id="evaluation" type = "number" value = "500" min = "0" max = "10000"/>
+	<button class="button" onclick="evaluationNumber()"><b>Mudar N&uacutemero de Avalia&ccedil&otildees</b></button>
+	</div>
+	
+	<div class="noBreak">
+    <button class="button" onclick="elevateClicked()"><b>Elevar Grau</b></button>
+	</div>
+	<div class="noBreak">
+    <button class="button" onclick="deleteCurve()"><b>Deletar Curva</b></button>
+	</div>
+	
+	<div class="noBreak">
+	<button class="button" onclick="alert('Clique para adicionar um ponto\nClique e arraste em um ponto para mov&ecirc-lo\nD&ecirc um clique-duplo em um ponto para remov&ecirc-lo')"><b>Instru&ccedil&otildees</b></button>
+	</div> 
+	
+	<div class="noBreak">
+	<button class="button" onclick="alert('ELEVA&Ccedil;&Atilde;O DE GRAU DA CURVA\n\nAlunos: J&ocirc;natas de Oliveira Clementino\n             Valdemiro Rosa Vieira Santos\n\nDescri&ccedil;&atilde;o: o usu&aacute;rio entra via mouse com os pontos de controle de uma curva de B&eacute;zier. O n&uacute;mero de pontos de controle &eacute; arbitr&aacute;rio, \nsem limite. O sistema desenha a curva correspondente.  O usu&aacute;rio \npoder&aacute; solicitar o aumento do grau da curva (que n&atilde;o modifica o formato da curva), e ele passa a manipular os novos pontos de controle.  \nO usu&aacute;rio pode modificar o posicionamento dos pontos, deletar e inserir pontos, e o sistema responder em tempo real de forma \nadequada, reconstruindo a curva correspondente. O usu&aacute;rio \npoder&aacute; suprimir os pontos de controle, a poligonal de \ncontrole, e os pontos da curva. O usu&aacute;rio tamb&eacute;m \npoder&aacute; determinar o n&uacute;mero de avalia&ccedil;&otilde;es que dever&aacute; ser usado para ent&atilde;o o sistema calcular os correspondentes pontos da curva e lig&aacute;-los por retas. As avalia&ccedil;&otilde;es dever&atilde;o ser feitas obrigatoriamente com o Algoritmo de de Casteljau.')"><b>Sobre o Projeto</b></button>
+	</div>
+	
+	</div> 
+	
+    </head>
+    <body class ="hidden" background="image/image.png">
+    <div id="main"></div>
+    <script>
+      var m = bonsai.run(document.getElementById('main'), {
+      url: 'js/deCasteljau.js',
+      width: $(window).width(),
+      height: $(window).height()
+      });
+
+      function elevateClicked() {
+      m.sendMessage('elevateDegree', {
+      })
+      }
+
+      function deleteCurve() {
+      m.sendMessage('deleteCurve', {
+      })
+      }
+
+      function evaluationNumber() {
+      var eval = document.getElementById('evaluation').value
+      m.sendMessage('receiveEvaluationNumber', {
+        data: eval
+      })
+      }
+
+      function controlPointsSwitch() {
+      var point_b = document.getElementById('control').checked
+      m.sendMessage('receiveControlPoints', {
+        data: point_b
+      });
+      }
+
+      function controlPolygonSwitch() {
+      var polygon_b = document.getElementById('polygon').checked
+      m.sendMessage('receiveControlPolygon', {
+        data: polygon_b
+      });
+      }
+
+      function curvePointsSwitch() {
+      var curve_b = document.getElementById('curve').checked
+      m.sendMessage('receiveCurvePoints', {
+        data: curve_b
+      });
+      }
+
+    </script>
+    </body>
+  </html>
